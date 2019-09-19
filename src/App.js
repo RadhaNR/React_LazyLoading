@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { HashRouter, Route, Switch, Link } from 'react-router-dom';
 import { FaTruckLoading } from 'react-icons/fa';
 import ErrorBoundary from './ErrorBoundary';
 
@@ -22,7 +22,7 @@ function App() {
     <div className="App">
       
         <Suspense fallback={<div>Loading...<FaTruckLoading /></div>}>
-          <BrowserRouter>
+          <HashRouter>
             <>
               <Link to="/one">One | </Link>
               <Link to="/two">Two | </Link>
@@ -34,12 +34,11 @@ function App() {
                 <Route path="/two" component={Two} />
                 <Route path="/three" render={()=> <ErrorBoundary><Three/></ErrorBoundary>}/>
                 <Route path="/four" render={()=> <ErrorBoundary><Four/></ErrorBoundary>}/>
-                <ErrorBoundary><Route path="/five11" render={()=> <Five/>} />
-                </ErrorBoundary>
+                <Route path="/five" render={()=>  <ErrorBoundary><Five/></ErrorBoundary>} />
+                
               </Switch>
             </>
-          </BrowserRouter>
-          <Two/>
+          </HashRouter>
         </Suspense>
      
     </div>
